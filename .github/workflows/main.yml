@@ -1,31 +1,20 @@
-# Action name
-name: Main
+name: LLVM Pass Tests
 
-# Here, this action will be enabled on all pushes.
-# Modify this to fit your needs.
 on:
   push
 
 jobs:
-  run-tests:
-    name: Run LLVM Pass Tests
+  compile:
+    name: Setup docker
     runs-on: ubuntu-latest
-    container:
-      image: ucdavisplse/ecs260-hw3
-      volumes:
-        - handout:/home/llvm/handout
-      options: --user root
-  
     steps:
-      - uses: actions/checkout@v2
-      - name: Run tests
-        run: | 
-          ls
-          pwd
-          cd ~
-          ls
-          pwd      
+    - name: Check out the repo
+      uses: actions/checkout@v2
+    - name: Run the build process with Docker
+      uses: addnab/docker-run-action@v3
+      with:
+        image: ucdavisplse/ecs260-hw
+        options: -v ${{ github.workspace }}/handout:/home/llvm/handout
+        run: |
+          cd handout
           ./run-tests.sh
-
-
-
