@@ -1,0 +1,25 @@
+# Action name
+name: Main
+
+# Here, this action will be enabled on all pushes.
+# Modify this to fit your needs.
+on:
+  push
+
+jobs:
+  run-tests:
+    name: Run LLVM Pass Tests
+    runs-on: ubuntu-latest
+    container:
+      image: ucdavisplse/ecs260-hw3
+  
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: | 
+          cp -r handout ~/handout
+          cd ~/handout      
+          ./run-tests.sh
+
+
+
