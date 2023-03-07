@@ -26,7 +26,9 @@ bool Instrument::runOnFunction(Module &M, Function &F) {
 			***/
 			if (GetElementPtrInst *getElement = dyn_cast<GetElementPtrInst>(inst)) {
 				Type *type = getElement->getSourceElementType();
+				//if we are looking at an array evaluate to true
 				if (ArrayType *arr = dyn_cast<ArrayType>(type)) {
+
 					/***
 					** STEP-2: Retrieve the size of the array
 					**/
@@ -35,19 +37,22 @@ bool Instrument::runOnFunction(Module &M, Function &F) {
 					/***
 					 ** STEP-3: Retrieve the index of the array element being accessed
 					**/
-					Value *Index = getElement->getOperand(getElement->getNumIndices());
+					Value *Index = getElement->getOperand(2);
 
+					// 1: this is index ; 2: this is a register
+					errs() << "\narray_index: " << Index << "\n";
+					
 					/***
 				 	** STEP-4: Retrieve the source information of the instruction
-					**/
+					 **/
 
 					/***
 	 				** STEP-5: Create and store the arguments of function check_bounds
 					** in the vector args.
 					**/
 					std::vector<Value*> args;
-					args.push_back(Index);
 					args.push_back(ArraySize);
+					args.push_back(Index);
 					Function *callee = M.getFunction("check_bounds");
 					if (callee) {
 						CallInst::Create(callee, args, "", inst);
