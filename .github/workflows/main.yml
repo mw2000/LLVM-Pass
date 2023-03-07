@@ -1,0 +1,20 @@
+name: LLVM Pass Tests
+
+on:
+  push
+
+jobs:
+  compile:
+    name: Setup docker
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+    - name: Run the build process with Docker
+      uses: addnab/docker-run-action@v3
+      with:
+        image: ucdavisplse/ecs260-hw3
+        options: -v ${{ github.workspace }}/handout:/home/llvm/handout
+        run: |
+          cd handout
+          ./run-tests.sh
