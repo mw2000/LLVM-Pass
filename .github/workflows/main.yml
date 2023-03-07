@@ -12,12 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ucdavisplse/ecs260-hw3
+      volumes:
+        - handout:/home/llvm/handout
   
     steps:
       - uses: actions/checkout@v2
       - name: Run tests
         run: | 
-          cp -r handout ~/handout
           cd ~/handout      
           ./run-tests.sh
 
