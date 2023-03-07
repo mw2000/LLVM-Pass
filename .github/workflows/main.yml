@@ -22,7 +22,9 @@ jobs:
         run: | 
           ls
           pwd
-          cd ~/handout      
+          cd ~
+          ls
+          pwd      
           ./run-tests.sh
 
 
