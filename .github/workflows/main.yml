@@ -13,7 +13,7 @@ jobs:
     - name: Run the build process with Docker
       uses: addnab/docker-run-action@v3
       with:
-        image: ucdavisplse/ecs260-hw
+        image: ucdavisplse/ecs260-hw3
         options: -v ${{ github.workspace }}/handout:/home/llvm/handout
         run: |
           cd handout
