@@ -7,7 +7,9 @@
 ** occurs. If the access is out of bounds, then the function prints an
 ** error message.
 ***/
-void check_bounds() {
-  printf("Out-of-Bounds Checking...\n");
+void check_bounds(long int size, long int index) {
+  if (index < 0 || index >= size) {
+      printf("Array Out of Bounds Error.\n");
+  }
   return;
 }

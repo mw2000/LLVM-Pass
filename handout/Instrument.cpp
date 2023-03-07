@@ -16,52 +16,47 @@ bool Instrument::runOnModule(Module &M) {
 
 
 bool Instrument::runOnFunction(Module &M, Function &F) {
+	for (Function::iterator b = F.begin(), be = F.end(); b != be; b++) {
+		for (BasicBlock::iterator i = b->begin(), ie = b->end(); i != ie; i++) {      
+			Instruction *inst = (Instruction*)i;
+			/***
+			** STEP-1: 
+			** Reimplement the following if-condition statement to check
+			** for the instructions of interest (array accesses).
+			***/
+			if (GetElementPtrInst *getElement = dyn_cast<GetElementPtrInst>(inst)) {
+				Type *type = getElement->getSourceElementType();
+				if (ArrayType *arr = dyn_cast<ArrayType>(type)) {
+					/***
+					** STEP-2: Retrieve the size of the array
+					**/
+					Value *ArraySize = llvm::ConstantInt::get(Type::getInt64Ty(M.getContext()), arr->getNumElements());
+					
+					/***
+					 ** STEP-3: Retrieve the index of the array element being accessed
+					**/
+					Value *Index = getElement->getOperand(getElement->getNumIndices());
 
-  for (Function::iterator b = F.begin(), be = F.end(); b != be; b++) {
-    for (BasicBlock::iterator i = b->begin(), ie = b->end(); i != ie; i++) {      
-      Instruction *inst = (Instruction*)i;
+					/***
+				 	** STEP-4: Retrieve the source information of the instruction
+					**/
 
-      /***
-       ** STEP-1: 
-       ** Reimplement the following if-condition statement to check
-       ** for the instructions of interest (array accesses).
-       ***/
-
-      if (inst&&0) {
-
-	/* Use the following to print the instruction to instrument for debugging purposes. */
-	// errs() << "  Instruction: " << *inst << "\n";
-
-	/***
-	 ** STEP-2: Retrieve the size of the array
-	 **/
-  
-	/***
-	 ** STEP-3: Retrieve the index of the array element being accessed
-	 **/
-
-	/***
-	 ** STEP-4: Retrieve the source information of the instruction
-	 **/
-  
-	/***
-	 ** STEP-5: Create and store the arguments of function check_bounds
-	 ** in the vector args.
-	 **/
-	std::vector<Value*> args;
-
-	/***
-	 ** The code below creates and inserts the call before inst. Modify as needed.
-	 **/
-
-	Function *callee = M.getFunction("check_bounds");
-	if (callee) {
-	  CallInst::Create(callee, args, "", inst);
+					/***
+	 				** STEP-5: Create and store the arguments of function check_bounds
+					** in the vector args.
+					**/
+					std::vector<Value*> args;
+					args.push_back(Index);
+					args.push_back(ArraySize);
+					Function *callee = M.getFunction("check_bounds");
+					if (callee) {
+						CallInst::Create(callee, args, "", inst);
+					}
+				}
+			}
+		}
 	}
-      }
-    }
-  }
-  return false;
+	return false;
 }
 
 
