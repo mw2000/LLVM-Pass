@@ -7,12 +7,11 @@
 ** occurs. If the access is out of bounds, then the function prints an
 ** error message.
 ***/
-void check_bounds(long int size, long int index, long int line) {
+void check_bounds(long int size, long int index, long int line, const char* file) {
   printf("SIZE : %ld : INDEX : %ld \n", size, index);
   if (index < 0 || index >= size) {
-      //this wont work right now because we dont have file. (char* file)
-      //printf("%s:%ld: Array Out of Bounds Error.\n", file, line);
-      printf("%ld: Array Out of Bounds Error.\n", line);
+      printf("%s:%ld: Array Out of Bounds Error.\n", file, line);
   }
   return;
 }
+
