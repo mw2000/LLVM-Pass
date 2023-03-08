@@ -32,27 +32,32 @@ bool Instrument::runOnFunction(Module &M, Function &F) {
 					/***
 					** STEP-2: Retrieve the size of the array
 					**/
-					Value *ArraySize = llvm::ConstantInt::get(Type::getInt64Ty(M.getContext()), arr->getNumElements());
+					Value *arraySize = llvm::ConstantInt::get(Type::getInt64Ty(M.getContext()), arr->getNumElements());
 					
 					/***
 					 ** STEP-3: Retrieve the index of the array element being accessed
 					**/
-					Value *Index = getElement->getOperand(2);
+					Value *index = getElement->getOperand(2);
 
-					// 1: this is index ; 2: this is a register
-					errs() << "\narray_index: " << Index << "\n";
-					
 					/***
 				 	** STEP-4: Retrieve the source information of the instruction
 					 **/
+					DebugLoc debug = getElement->getDebugLoc();
+					int lineNumber = debug->getLine();
+					Value* line = ConstantInt::get(Type::getInt64Ty(M.getContext()), lineNumber);
 
+					//FILENAME
+					std::string fileName = "abc";
+					
 					/***
 	 				** STEP-5: Create and store the arguments of function check_bounds
 					** in the vector args.
 					**/
 					std::vector<Value*> args;
-					args.push_back(ArraySize);
-					args.push_back(Index);
+					args.push_back(arraySize);
+					args.push_back(index);
+					args.push_back(line);
+					//args.push_back(fileName);
 					Function *callee = M.getFunction("check_bounds");
 					if (callee) {
 						CallInst::Create(callee, args, "", inst);
