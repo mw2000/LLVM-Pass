@@ -22,7 +22,7 @@ echo "Done Instrumenting Code-------------------------------------"
 echo -e "\nRunning Tests-------------------------------------------------"
 for test in $test_dir/test*.c; do
   test=`echo $test | cut -d . -f 1`
-  echo -e "Test: $test.c\n"
+  #echo -e "Test: $test.c\n"
   $LLVM_DIR/bin/lli ${test}_i.bc
 done
 echo -e "Done Running Tests--------------------------------------------"

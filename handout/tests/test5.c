@@ -1,9 +1,9 @@
+// 1D double array with for loop
 #include <stdio.h>
 
 int main() {
-  int numbers[3];
-  numbers[4] = 9;
-  return 0;
+  double arr[2] = {9.12, 4.77};
+  for (int i = 0; i < 3; i++) {
+    double value = arr[i];
+  }
 }
-
-

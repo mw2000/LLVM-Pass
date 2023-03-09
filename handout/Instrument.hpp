@@ -6,6 +6,7 @@
 #include <llvm/IR/Instructions.h>
 #include <llvm/Support/raw_ostream.h>
 #include <llvm/IR/Constants.h>
+#include <llvm/IR/IRBuilder.h>
 using namespace llvm;
 
 class Instrument : public ModulePass {

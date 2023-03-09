@@ -1,13 +1,8 @@
+// 1D double array without for loop
 #include <stdio.h>
 
 int main() {
-  int numbers[3][4][5];
-  for(int i = 0; i < 3; i++) {
-    for (int j = 0; j < 5; j++) {
-      for (int k = 0; k < 5; k++) {
-        numbers[i][j][k] = k;
-      }
-    }
-  }
+  double numbers[2] = {1.7, 2.1};
+  double x = numbers[5];
   return 0;
 }

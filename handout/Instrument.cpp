@@ -37,8 +37,9 @@ bool Instrument::runOnFunction(Module &M, Function &F) {
 					/***
 					 ** STEP-3: Retrieve the index of the array element being accessed
 					**/
-					Value *index = getElement->getOperand(2);
-
+					IRBuilder<> Builder(&*i);
+					Value *index = getElement->getOperand(getElement->getNumIndices());
+					Value *index64 = Builder.CreateSExt(index, Type::getInt64Ty(M.getContext()));
 					/***
 				 	** STEP-4: Retrieve the source information of the instruction
 					 **/
@@ -47,7 +48,9 @@ bool Instrument::runOnFunction(Module &M, Function &F) {
 					Value* line = ConstantInt::get(Type::getInt64Ty(M.getContext()), lineNumber);
 
 					//FILENAME
-					std::string fileName = "abc";
+					
+ 					std::string fileName = debug->getFilename().str();
+					Value* filenamePtr = Builder.CreateGlobalStringPtr(fileName);
 					
 					/***
 	 				** STEP-5: Create and store the arguments of function check_bounds
@@ -55,9 +58,9 @@ bool Instrument::runOnFunction(Module &M, Function &F) {
 					**/
 					std::vector<Value*> args;
 					args.push_back(arraySize);
-					args.push_back(index);
+					args.push_back(index64);
 					args.push_back(line);
-					//args.push_back(fileName);
+					args.push_back(filenamePtr);
 					Function *callee = M.getFunction("check_bounds");
 					if (callee) {
 						CallInst::Create(callee, args, "", inst);
