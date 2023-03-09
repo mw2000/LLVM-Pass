@@ -42,6 +42,12 @@ tests/test16.c:5:3: note: array 'numbers' declared here
 1 warning generated.
 Test: tests/test16.c
 
+Test: tests/test17.c
+
+Test: tests/test18.c
+
+Test: tests/test19.c
+
 tests/test2.c:6:11: warning: array index 5 is past the end of the array (which contains 2 elements) [-Warray-bounds]
   int x = numbers[5];
           ^       ~
@@ -50,6 +56,8 @@ tests/test2.c:5:3: note: array 'numbers' declared here
   ^
 1 warning generated.
 Test: tests/test2.c
+
+Test: tests/test20.c
 
 tests/test3.c:6:14: warning: array index 5 is past the end of the array (which contains 2 elements) [-Warray-bounds]
   double x = numbers[5];
@@ -103,21 +111,37 @@ Test: tests/test9.c
 Done Instrumenting Code-------------------------------------
 
 Running Tests-------------------------------------------------
-tests/test1.c:7: Array Out of Bounds Error.
-tests/test10.c:8: Array Out of Bounds Error.
-tests/test10.c:8: Array Out of Bounds Error.
-tests/test11.c:8: Array Out of Bounds Error.
-tests/test11.c:8: Array Out of Bounds Error.
-tests/test12.c:10: Array Out of Bounds Error.
-tests/test15.c:6: Array Out of Bounds Error.
-tests/test15.c:7: Array Out of Bounds Error.
-tests/test16.c:7: Array Out of Bounds Error.
-tests/test2.c:6: Array Out of Bounds Error.
-tests/test3.c:6: Array Out of Bounds Error.
-tests/test4.c:7: Array Out of Bounds Error.
-tests/test5.c:7: Array Out of Bounds Error.
-tests/test6.c:10: Array Out of Bounds Error.
-tests/test7.c:6: Array Out of Bounds Error.
-tests/test8.c:6: Array Out of Bounds Error.
-tests/test9.c:6: Array Out of Bounds Error.
+tests/test1.c:7: Array Out of Bounds Error
+tests/test10.c:8: Array Out of Bounds Error
+tests/test10.c:8: Array Out of Bounds Error
+tests/test11.c:8: Array Out of Bounds Error
+tests/test11.c:8: Array Out of Bounds Error
+tests/test12.c:10: Array Out of Bounds Error
+tests/test15.c:6: Array Out of Bounds Error
+tests/test15.c:7: Array Out of Bounds Error
+tests/test16.c:7: Array Out of Bounds Error
+tests/test17.c:8: Array Out of Bounds Error
+tests/test17.c:8: Array Out of Bounds Error
+tests/test18.c:8: Array Out of Bounds Error
+tests/test18.c:8: Array Out of Bounds Error
+tests/test19.c:8: Array Out of Bounds Error
+tests/test19.c:8: Array Out of Bounds Error
+tests/test19.c:8: Array Out of Bounds Error
+tests/test19.c:8: Array Out of Bounds Error
+tests/test19.c:8: Array Out of Bounds Error
+tests/test19.c:8: Array Out of Bounds Error
+tests/test2.c:6: Array Out of Bounds Error
+tests/test20.c:8: Array Out of Bounds Error
+tests/test20.c:8: Array Out of Bounds Error
+tests/test20.c:8: Array Out of Bounds Error
+tests/test20.c:8: Array Out of Bounds Error
+tests/test20.c:8: Array Out of Bounds Error
+tests/test20.c:8: Array Out of Bounds Error
+tests/test3.c:6: Array Out of Bounds Error
+tests/test4.c:7: Array Out of Bounds Error
+tests/test5.c:7: Array Out of Bounds Error
+tests/test6.c:10: Array Out of Bounds Error
+tests/test7.c:6: Array Out of Bounds Error
+tests/test8.c:6: Array Out of Bounds Error
+tests/test9.c:6: Array Out of Bounds Error
 Done Running Tests--------------------------------------------
