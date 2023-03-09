@@ -8,9 +8,8 @@
 ** error message.
 ***/
 void check_bounds(long int size, long int index, long int line, const char* file) {
-  printf("SIZE : %ld : INDEX : %ld \n", size, index);
   if (index < 0 || index >= size) {
-      printf("%s:%ld: Array Out of Bounds Error.\n", file, line);
+      printf("%s:%ld: Array Out of Bounds Error\n", file, line);
   }
   return;
 }
