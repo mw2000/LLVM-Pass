@@ -1,4 +1,4 @@
-// 2D double array with for loop error in second loop
+// 2D double array with for loop out of bounds in both loops
 #include <stdio.h>
 
 int main() {
