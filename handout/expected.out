@@ -1,0 +1,147 @@
+Instrumenting Code------------------------------------------
+Test: tests/test1.c
+
+Test: tests/test10.c
+
+Test: tests/test11.c
+
+tests/test12.c:10:11: warning: array index 6 is past the end of the array (which contains 1 element) [-Warray-bounds]
+  int x = s.numbers[2][6];
+          ^            ~
+tests/test12.c:5:3: note: array 'numbers' declared here
+  int numbers[3][1];
+  ^
+1 warning generated.
+Test: tests/test12.c
+
+Test: tests/test13.c
+
+Test: tests/test14.c
+
+tests/test15.c:6:11: warning: array index 5 is past the end of the array (which contains 2 elements) [-Warray-bounds]
+  int x = numbers[5];
+          ^       ~
+tests/test15.c:5:3: note: array 'numbers' declared here
+  int numbers[2] = {1, 2};
+  ^
+tests/test15.c:7:11: warning: array index 6 is past the end of the array (which contains 2 elements) [-Warray-bounds]
+  int y = numbers[6];
+          ^       ~
+tests/test15.c:5:3: note: array 'numbers' declared here
+  int numbers[2] = {1, 2};
+  ^
+2 warnings generated.
+Test: tests/test15.c
+
+tests/test16.c:7:11: warning: array index 10001 is past the end of the array (which contains 10000 elements) [-Warray-bounds]
+  int y = numbers[10001];
+          ^       ~~~~~
+tests/test16.c:5:3: note: array 'numbers' declared here
+  int numbers[10000] = {};
+  ^
+1 warning generated.
+Test: tests/test16.c
+
+Test: tests/test17.c
+
+Test: tests/test18.c
+
+Test: tests/test19.c
+
+tests/test2.c:6:11: warning: array index 5 is past the end of the array (which contains 2 elements) [-Warray-bounds]
+  int x = numbers[5];
+          ^       ~
+tests/test2.c:5:3: note: array 'numbers' declared here
+  int numbers[2] = {1, 2};
+  ^
+1 warning generated.
+Test: tests/test2.c
+
+Test: tests/test20.c
+
+tests/test3.c:6:14: warning: array index 5 is past the end of the array (which contains 2 elements) [-Warray-bounds]
+  double x = numbers[5];
+             ^       ~
+tests/test3.c:5:3: note: array 'numbers' declared here
+  double numbers[2] = {1.7, 2.1};
+  ^
+1 warning generated.
+Test: tests/test3.c
+
+Test: tests/test4.c
+
+Test: tests/test5.c
+
+tests/test6.c:10:11: warning: array index 3 is past the end of the array (which contains 3 elements) [-Warray-bounds]
+  int x = s.numbers[3];
+          ^         ~
+tests/test6.c:5:3: note: array 'numbers' declared here
+  int numbers[3];
+  ^
+1 warning generated.
+Test: tests/test6.c
+
+tests/test7.c:6:11: warning: array index -1 is before the beginning of the array [-Warray-bounds]
+  int x = numbers[-1];
+          ^       ~~
+tests/test7.c:5:3: note: array 'numbers' declared here
+  int numbers[3] = {5, 3, 1};
+  ^
+1 warning generated.
+Test: tests/test7.c
+
+tests/test8.c:6:11: warning: array index 3 is past the end of the array (which contains 3 elements) [-Warray-bounds]
+  int x = numbers[1][3];
+          ^          ~
+tests/test8.c:5:3: note: array 'numbers' declared here
+  int numbers[2][3] = {{1, 2, 3}, {4, 5, 6}};
+  ^
+1 warning generated.
+Test: tests/test8.c
+
+tests/test9.c:6:19: warning: array index 7 is past the end of the array (which contains 2 elements) [-Warray-bounds]
+  double value2 = arr[0][7];
+                  ^      ~
+tests/test9.c:5:3: note: array 'arr' declared here
+  double arr[2][2] = {{8.2, 1.3}, {9.4, 14.5}};
+  ^
+1 warning generated.
+Test: tests/test9.c
+
+Done Instrumenting Code-------------------------------------
+
+Running Tests-------------------------------------------------
+tests/test1.c:7: Array Out of Bounds Error
+tests/test10.c:8: Array Out of Bounds Error
+tests/test10.c:8: Array Out of Bounds Error
+tests/test11.c:8: Array Out of Bounds Error
+tests/test11.c:8: Array Out of Bounds Error
+tests/test12.c:10: Array Out of Bounds Error
+tests/test15.c:6: Array Out of Bounds Error
+tests/test15.c:7: Array Out of Bounds Error
+tests/test16.c:7: Array Out of Bounds Error
+tests/test17.c:8: Array Out of Bounds Error
+tests/test17.c:8: Array Out of Bounds Error
+tests/test18.c:8: Array Out of Bounds Error
+tests/test18.c:8: Array Out of Bounds Error
+tests/test19.c:8: Array Out of Bounds Error
+tests/test19.c:8: Array Out of Bounds Error
+tests/test19.c:8: Array Out of Bounds Error
+tests/test19.c:8: Array Out of Bounds Error
+tests/test19.c:8: Array Out of Bounds Error
+tests/test19.c:8: Array Out of Bounds Error
+tests/test2.c:6: Array Out of Bounds Error
+tests/test20.c:8: Array Out of Bounds Error
+tests/test20.c:8: Array Out of Bounds Error
+tests/test20.c:8: Array Out of Bounds Error
+tests/test20.c:8: Array Out of Bounds Error
+tests/test20.c:8: Array Out of Bounds Error
+tests/test20.c:8: Array Out of Bounds Error
+tests/test3.c:6: Array Out of Bounds Error
+tests/test4.c:7: Array Out of Bounds Error
+tests/test5.c:7: Array Out of Bounds Error
+tests/test6.c:10: Array Out of Bounds Error
+tests/test7.c:6: Array Out of Bounds Error
+tests/test8.c:6: Array Out of Bounds Error
+tests/test9.c:6: Array Out of Bounds Error
+Done Running Tests--------------------------------------------
