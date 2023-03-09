@@ -1,3 +1,10 @@
+/* 
+TEAM MEMBERS: 
+NAME            | STUDENT ID
+CHAITENYA GUPTA | 916442998
+MIHIR WADEKAR   | 915949078
+*/
+
 #include "Instrument.hpp"
 
 bool Instrument::doInitialization(Module &M __attribute__((unused))) {
